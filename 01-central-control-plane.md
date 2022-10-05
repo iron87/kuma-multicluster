@@ -48,7 +48,7 @@ Expose the kuma gui on internet
 <install kong> https://github.com/kumahq/kuma-counter-demo/blob/master/kong.yaml
 ```
 
-add ingress rule
+add ingress rule for kuma control plane
 ```
 echo "apiVersion: networking.k8s.io/v1
 kind: Ingress
