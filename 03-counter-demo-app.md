@@ -1,4 +1,10 @@
 
+# Demo App 
+
+## App deploy on k8s
+
+For all zone clusters
+
 ```
 git clone https://github.com/kumahq/kuma-counter-demo.git
 ```
@@ -10,9 +16,11 @@ kubectl apply -f demo.yaml
 ```
 
 
-- install kong
+## Kong Ingress 
 
-create an ingress for demo app
+install kong: https://github.com/kumahq/kuma-counter-demo/blob/master/kong.yaml
+
+Create an ingress for demo app
 
 ```
 echo "apiVersion: networking.k8s.io/v1

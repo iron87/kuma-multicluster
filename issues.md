@@ -8,7 +8,7 @@ kubectl apply -f demo.yaml
 ```
 
 
-#2 Deploy on Aruba cluster
+#2 Deploy on Openstack clusters
 
 - Il cloud controller crea un solo load balancer (zone-ingress) anzichè uno per ogni zona. Il problema potrebbe essere la naming convention usata dal cloud controller per creare i nomi.
 

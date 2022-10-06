@@ -1,3 +1,5 @@
+## Kumactl installation
+
 install kumactl
 ```
 curl -L https://kuma.io/installer.sh | sh -
@@ -8,6 +10,7 @@ cd kuma-1.8.0/bin
 PATH=$(pwd):$PATH
 ```
 
+## Control Plane installation
 ```
 kumactl install control-plane --mode=global | kubectl apply -f -
 ```
@@ -19,7 +22,10 @@ kubectl get services -n kuma-system
 ```
 You will use it (param <global-kds-address>) to setup the zone control planes
 
-##Enable mutual tls
+## Enable mutual tls
+
+This step is mandatory to enable cross zone communication
+
 ```
 echo "apiVersion: kuma.io/v1alpha1
 kind: Mesh
@@ -41,14 +47,14 @@ spec:
 ```
 
 
-##Optional
-Expose the kuma gui on internet
+## (Optional) Expose the kuma gui on internet
 
-````
-<install kong> https://github.com/kumahq/kuma-counter-demo/blob/master/kong.yaml
-```
 
-add ingress rule for kuma control plane
+install kong: https://github.com/kumahq/kuma-counter-demo/blob/master/kong.yaml
+
+
+add an ingress rule for kuma control plane
+
 ```
 echo "apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -70,4 +76,7 @@ spec:
             port: 
               number: 5681" | kubectl apply -f -
 ```
+### References
 
+- https://kuma.io/docs/1.8.x/deployments/multi-zone/#usage
+- https://kuma.io/docs/1.8.x/policies/mutual-tls/#mutual-tls
