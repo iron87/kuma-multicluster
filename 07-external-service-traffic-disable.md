@@ -17,14 +17,30 @@ spec:
 then define an external service
 
 ```
-type: ExternalService
+apiVersion: kuma.io/v1alpha1
+kind: ExternalService
 mesh: default
-name: redis-vm
-tags:
-  kuma.io/service: redis-vm
-  kuma.io/protocol: tcp
-networking:
-  address: 10.154.16.54:6379
-  tls:
-    enabled: false
+metadata:
+  name: redis-vm-ext
+spec:
+  tags:
+    kuma.io/service: redis-vm
+    kuma.io/protocol: tcp
+  networking:
+    address: 10.154.16.54:6379
+    tls:
+      enabled: false
+---
+apiVersion: kuma.io/v1alpha1
+kind: TrafficPermission
+mesh: default
+metadata:
+  name: backend-to-httpbin
+spec:
+  sources:
+    - match:
+        kuma.io/service: demo-app_kuma-demo_svc_5000
+  destinations:
+    - match:
+        kuma.io/service: httpbin
 ```
