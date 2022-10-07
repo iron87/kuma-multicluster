@@ -1,3 +1,5 @@
+
+``
 echo "apiVersion: kuma.io/v1alpha1
 kind: Mesh
 metadata:
@@ -6,3 +8,4 @@ spec:
   networking:
     outbound:
       passthrough: false" | kubectl apply -f -
+```
