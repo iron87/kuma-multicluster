@@ -35,12 +35,12 @@ apiVersion: kuma.io/v1alpha1
 kind: TrafficPermission
 mesh: default
 metadata:
-  name: backend-to-httpbin
+  name: demoapp-to-redis-vm
 spec:
   sources:
     - match:
         kuma.io/service: demo-app_kuma-demo_svc_5000
   destinations:
     - match:
-        kuma.io/service: httpbin
+        kuma.io/service: redis-vm
 ```
