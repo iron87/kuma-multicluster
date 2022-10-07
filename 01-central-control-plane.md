@@ -68,7 +68,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: /
+      - path: /gui
         pathType: ImplementationSpecific
         backend:
           service:

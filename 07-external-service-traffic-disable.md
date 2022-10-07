@@ -1,0 +1,8 @@
+echo "apiVersion: kuma.io/v1alpha1
+kind: Mesh
+metadata:
+  name: default
+spec:
+  networking:
+    outbound:
+      passthrough: false" | kubectl apply -f -
