@@ -31,14 +31,14 @@ kumactl install control-plane \
 --kds-global-address grpcs://<global-kds-address>:5685 | kubectl apply -f -
 ```
 
-
+```
 kumactl install control-plane \
     --mode=zone \
     --zone=zone-1 \
     --ingress-enabled \
     --egress-enabled \
     --kds-global-address grpcs://10.154.16.52:5685 | kubectl apply -f -
-
+```
 
 ### References
 
