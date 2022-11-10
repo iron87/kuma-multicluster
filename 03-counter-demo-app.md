@@ -3,13 +3,12 @@
 
 ## App deploy on k8s
 
-For all zone clusters
-
+Clone the demo app repo:
 ```
 git clone https://github.com/kumahq/kuma-counter-demo.git
 ```
 
-For every zone cluster
+For every zone cluster:
 
 ```
 kubectl apply -f demo.yaml
