@@ -9,7 +9,6 @@ kubectl delete trafficpermissions-kuma-io allow-all-default
 Then apply the new policies:
 
 ```
-
 apiVersion: kuma.io/v1alpha1
 kind: TrafficPermission
 mesh: default
