@@ -18,6 +18,8 @@ kind: Ingress
 metadata:
   name: prometheus-ingress
   namespace: prometheus
+  annotations:
+    konghq.com/strip-path: 'true'
 spec:
   ingressClassName: kong
   rules:
@@ -32,9 +34,6 @@ spec:
               number: 80" | kubectl apply -f -
 ```
 
-Get the ingress ip 
-
-
 # Prometheus zone
 
 ```
@@ -47,7 +46,7 @@ helm repo update
 We can't use dynamic volume provisioning on our clusters, then I disable the persistentVolume on prometheus deployment
 
 ```
-helm upgrade -i -n prometheus --set-file extraScrapeConfigs=../prometheus/scrape-configs.yaml --set-file server.remote_write=../prometheus/remote-write.yaml  --set server.persistentVolume.enabled=false  prometheus prometheus-community/prometheus
+helm upgrade -i -n prometheus --set-file extraScrapeConfigs=../prometheus/scrape-configs.yaml --set server.persistentVolume.enabled=false -f ../prometheus/remote-write.yaml prometheus prometheus-community/prometheus
 ```
 
 Update the mesh config in order to enable prometheus
@@ -64,20 +63,22 @@ spec:
     - name: prometheus-1
       type: prometheus
       conf:
-        skipMTLS: false
+        skipMTLS: true
 ```
 
 
- install grafana
+ ## Grafana
 
  kumactl install observability --components  grafana > grafana.yaml
 
-
-echo "apiVersion: networking.k8s.io/v1
+```yaml
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: grafana-ingress
-  namespace: kong
+  namespace: mesh-observability
+  annotations:
+    konghq.com/strip-path: 'true'
 spec:
   ingressClassName: kong
   rules:
@@ -89,11 +90,12 @@ spec:
           service:
             name: grafana
             port: 
-              number: 80" | kubectl apply -f -
+              number: 80
+```
+
+Then we need to change the prometheus datasource on grafana, in order to use our prometheus server
 
 
-
-https://github.com/kumahq/kuma-grafana-datasource
 
 
     

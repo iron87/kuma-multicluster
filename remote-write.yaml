@@ -1,1 +1,3 @@
-- url: <ip>/api/v1/write
+server:
+  remoteWrite:
+    - url: http://<ip>/prometheus/api/v1/write
