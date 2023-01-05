@@ -68,8 +68,12 @@ spec:
 
 
  ## Grafana
+```
+kumactl install observability --components  grafana > grafana.yaml
+```
+Then we need to change the prometheus datasource on grafana, in order to use our prometheus server, editing the grafana.yaml.
 
- kumactl install observability --components  grafana > grafana.yaml
+If you want to make grafana accessible outside the cluster, you can define an ingress:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -84,7 +88,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: /grafana
+      - path: /
         pathType: ImplementationSpecific
         backend:
           service:
@@ -93,7 +97,7 @@ spec:
               number: 80
 ```
 
-Then we need to change the prometheus datasource on grafana, in order to use our prometheus server
+
 
 
 
