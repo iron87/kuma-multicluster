@@ -21,7 +21,7 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service:
-            name: jager-collector
+            name: jaeger-collector
             port: 
               number: 9411"
 ```
