@@ -19,12 +19,12 @@ spec:
             name: loki
             port: 
               number: 3100" | kubectl apply -f -
-
+```
 
 On zones' observability manifest you have to modify the loki-promtail configuration, by setting the value of: 
 ```
 -client.url=http://loki.mesh-observability:3100/loki/api/v1/push 
-````
+```
 to 
 ```
 -client.url=http://<global-ingress-controller-ip>/loki/loki/api/v1/push
